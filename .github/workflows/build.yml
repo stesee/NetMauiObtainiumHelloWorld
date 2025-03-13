@@ -30,23 +30,9 @@ jobs:
     - name: Publish .NET MAUI Android project
       run: dotnet publish NetMauiOptainiumHelloWorld -f:net8.0-android -c Release -o output
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
+    - name: Github Prelease
+      shell: bash
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-
-    - name: Upload APK to Release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./output/*.apk
-        asset_name: myapp.apk
-        asset_content_type: application/vnd.android.package-archive
+      run: |
+          gh release create ${{ github.ref }} ./output/*.apk --generate-notes
