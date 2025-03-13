@@ -19,6 +19,9 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Install dependencies
+      run: dotnet workload install maui-android
+
+    - name: Install dependencies
       run: dotnet restore
 
     - name: Build .NET MAUI project
