@@ -28,8 +28,8 @@
 
  <!-- Versions -->
         <ApplicationDisplayVersion>$(Version)</ApplicationDisplayVersion>
-        <ApplicationVersion>$([System.String]::Copy($(Version)).Split('.')[0])</ApplicationVersion>
-
+		<MajorVersion>$(Version.Split('.')[0])</MajorVersion>
+        <ApplicationVersion>$(MajorVersion)</ApplicationVersion>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
