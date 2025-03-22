@@ -26,9 +26,10 @@
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.netmauioptainiumhelloworld</ApplicationId>
 
-	 <!-- Versions -->
+ <!-- Versions -->
         <ApplicationDisplayVersion>$(Version)</ApplicationDisplayVersion>
-        <ApplicationVersion>$(Version.Major)</ApplicationVersion>
+        <ApplicationVersion>$([System.String]::Copy($(Version)).Split('.')[0])</ApplicationVersion>
+
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
