@@ -24,11 +24,15 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
+    - name: Extract version from tag
+      id: extract_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
     - name: Build .NET MAUI project
-      run: dotnet build -c Release
+      run: dotnet build -c Release /p:Version=${{ env.VERSION }}
 
     - name: Publish .NET MAUI Android project
-      run: dotnet publish NetMauiOptainiumHelloWorld -f:net8.0-android -c Release -o output
+      run: dotnet publish NetMauiOptainiumHelloWorld -f:net8.0-android -c Release -o output /p:Version=${{ env.VERSION }}
 
     - name: Github Prelease
       shell: bash
