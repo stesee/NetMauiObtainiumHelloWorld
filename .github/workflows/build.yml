@@ -2,8 +2,6 @@
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
 
 jobs:
   build:
@@ -32,11 +30,16 @@ jobs:
       run: dotnet build -c Release /p:Version=${{ env.VERSION }}
 
     - name: Publish .NET MAUI Android project
-      run: dotnet publish NetMauiOptainiumHelloWorld -f:net8.0-android -c Release -o output /p:Version=${{ env.VERSION }}
+      env:
+        ANDROID_SIGN_KEY: ${{ secrets.ANDROID_SIGN_KEY }}
+      run: dotnet publish -f net8.0-android -c Release -p:Version=${{ env.VERSION }} -p:AndroidKeyStore=true -p:AndroidSigningKeyStore=$pwd\myapp.keystore -p:AndroidSigningKeyAlias=myapp -p:AndroidSigningKeyPass=$ANDROID_SIGN_KEY -p:AndroidSigningStorePass=$ANDROID_SIGN_KEY -p:AndroidSdkDirectory=$env:LOCALAPPDATA\Android\Sdk
 
-    - name: Github Prelease
+    - name: Github
+      if: startsWith(github.ref, 'refs/tags/v')
       shell: bash
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ANDROID_SIGN_KEY: ${{ secrets.ANDROID_SIGN_KEY }}
       run: |
           gh release create ${{ github.ref }} ./output/*.apk --generate-notes
+          
