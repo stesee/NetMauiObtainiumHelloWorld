@@ -24,7 +24,13 @@ jobs:
 
     - name: Extract version from tag
       id: extract_version
-      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/v}
+        if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+          VERSION="1.0.1"
+        fi
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "Using version $VERSION"
 
     - name: Build .NET MAUI project
       run: dotnet build -c Release /p:Version=${{ env.VERSION }}
