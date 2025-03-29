@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: dotnet workload install maui-android
 
-    - name: Install dependencies
+    - name: dotnet restore
       run: dotnet restore
 
     - name: Extract version from tag
@@ -27,6 +27,7 @@ jobs:
       run: |
         VERSION=${GITHUB_REF#refs/tags/v}
         if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+          echo "Invalid version format. Expected format: 'x.y.z' using 1.0.1 as fallback."
           VERSION="1.0.1"
         fi
         echo "VERSION=$VERSION" >> $GITHUB_ENV
@@ -38,7 +39,7 @@ jobs:
     - name: Publish .NET MAUI Android project
       env:
         ANDROID_SIGN_KEY: ${{ secrets.ANDROID_SIGN_KEY }}
-      run: dotnet publish -f net8.0-android -c Release -p:Version=${{ env.VERSION }} -p:AndroidKeyStore=true -p:AndroidSigningKeyStore=$pwd\myapp.keystore -p:AndroidSigningKeyAlias=myapp -p:AndroidSigningKeyPass=$ANDROID_SIGN_KEY -p:AndroidSigningStorePass=$ANDROID_SIGN_KEY -p:AndroidSdkDirectory=$env:LOCALAPPDATA\Android\Sdk
+      run: dotnet publish -f net8.0-android -c Release -p:Version=${{ env.VERSION }} -p:AndroidKeyStore=true -p:AndroidSigningKeyStore=$PWD/myapp.keystore -p:AndroidSigningKeyAlias=myapp -p:AndroidSigningKeyPass=${{ secrets.ANDROID_SIGN_KEY }} -p:AndroidSigningStorePass=${{ secrets.ANDROID_SIGN_KEY }}
 
     - name: Github
       if: startsWith(github.ref, 'refs/tags/v')
