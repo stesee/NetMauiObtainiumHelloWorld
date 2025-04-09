@@ -5,7 +5,7 @@
 - Minimal major version is '1'
 - Install [Obtainium](https://github.com/ImranR98/Obtainium?tab=readme-ov-file#installation)
 - Add "https://github.com/stesee/NetMauiOptainiumHelloWorld" to Obtainium.
-- Use obtainium://github.com/stesee/NetMauiOptainiumHelloWorld on websites to outomate the last step, e.g. [![Obtainium](https://img.shields.io/badge/Obtainium%20Store-NetMauiOptainiumHelloWorld-green?style=flat&logo=android)](https://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/stesee/NetMauiOptainiumHelloWorld)
+- Use obtainium://github.com/stesee/NetMauiOptainiumHelloWorld on websites to outomate the last step, e.g. [![Obtainium](https://img.shields.io/badge/Obtainium%20Store-NetMauiOptainiumHelloWorld-green?style=flat&logo=android)](https://codeuctivity.github.io/obtainium/redirect?r=obtainium://add/https://github.com/stesee/NetMauiOptainiumHelloWorld)
 
 ## Development
 
