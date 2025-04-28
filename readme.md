@@ -4,8 +4,8 @@
 - Add an git tag fiting the pattern 'v*.*.*', that will trigger a release build
 - Minimal major version is '1'
 - Install [Obtainium](https://github.com/ImranR98/Obtainium?tab=readme-ov-file#installation)
-- Add "https://github.com/stesee/NetMauiOptainiumHelloWorld" to Obtainium.
-- Use obtainium://github.com/stesee/NetMauiOptainiumHelloWorld on websites to outomate the last step, e.g. [![Obtainium](https://img.shields.io/badge/Obtainium%20Store-NetMauiOptainiumHelloWorld-green?style=flat&logo=android)](https://codeuctivity.github.io/obtainium/redirect?r=obtainium://add/https://github.com/stesee/NetMauiOptainiumHelloWorld)
+- Add "https://github.com/stesee/NetMauiObtainiumHelloWorld" to Obtainium.
+- Use obtainium://github.com/stesee/NetMauiObtainiumHelloWorld on websites to outomate the last step, e.g. [![Obtainium](https://img.shields.io/badge/Obtainium%20Store-NetMauiObtainiumHelloWorld-green?style=flat&logo=android)](https://codeuctivity.github.io/obtainium/redirect?r=obtainium://add/https://github.com/stesee/NetMauiObtainiumHelloWorld)
 
 ## Development
 
@@ -23,7 +23,7 @@ keytool -list -keystore myapp.keystore
 dotnet publish -f net8.0-android -c Release -p:AndroidKeyStore=true -p:AndroidSigningKeyStore=myapp.keystore -p:AndroidSigningKeyAlias=myapp -p:AndroidSigningKeyPass=XXXXXXXXXXXXXXXXXXXXXXX -p:AndroidSigningStorePass=XXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-Put the used key into "https://github.com/stesee/NetMauiOptainiumHelloWorld/settings/secrets/actions/new" with the name "ANDROID_SIGN_KEY"
+Put the used key into "https://github.com/stesee/NetMauiObtainiumHelloWorld/settings/secrets/actions/new" with the name "ANDROID_SIGN_KEY"
 
 ### Windows dev setup
 
